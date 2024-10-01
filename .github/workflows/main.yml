@@ -22,7 +22,7 @@ jobs:
           aws-region: us-east-1
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform destroy --auto-approve
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
         TF_ACTION_WORKING_DIR: '.'
@@ -30,20 +30,20 @@ jobs:
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     #- name: Terraform Validate
-    #  uses: hashicorp/terraform-github-actions/validate@v0.3.7
-    - name: Terraform Plan
-      run: terraform plan
-      env:
-       GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
-       TF_ACTION_WORKING_DIR: '.'
-       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #  ##uses: hashicorp/terraform-github-actions/validate@v0.3.7
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   env:
+    #    GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
+    #    TF_ACTION_WORKING_DIR: '.'
+    #    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
 
-    - name: Terraform Apply
-      run : terraform apply --auto-approve
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
-        TF_ACTION_WORKING_DIR: '.'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    # - name: Terraform Apply
+    #   run : terraform apply --auto-approve
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
+    #     TF_ACTION_WORKING_DIR: '.'
+    #     AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
