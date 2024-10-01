@@ -41,7 +41,7 @@ jobs:
       
 
     - name: Terraform Apply
-      run : terraform aplly --auto-approve
+      run : terraform apply --auto-approve
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
         TF_ACTION_WORKING_DIR: '.'
