@@ -172,7 +172,7 @@ aws_secrete = {
   exclude_lowercase = false
   exclude_characters = "!@#$%^&*()?> <.=:;|-_+}]/,"
 
-  secrete_manager_name = "my_secrete_for_rdsssssssssssssssssss"
+  secrete_manager_name = "my_secrete_for_rdsssssssssssss#sssssss"
 
   u_name_for_secrete = "tayyab"
 }
