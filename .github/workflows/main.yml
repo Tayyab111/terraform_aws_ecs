@@ -1,9 +1,7 @@
 name: Deploy Infrastructure
 
 on:
-  push
-    #branches:
-    #  - master
+  workflow_dispatch:
 
 jobs:
   tf_fmt:
