@@ -2,6 +2,15 @@ name: Deploy Infrastructure
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: 'Choose whether to create or destroy resources'
+        required: true
+        default: 'create'
+        type: choice
+        options:
+          - create_infra
+          - destroy_infra
 
 jobs:
   tf_fmt:
@@ -27,17 +36,9 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    # - name: Terraform destroy 
-    #   run: terraform destroy --auto-approve
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
-    #     TF_ACTION_WORKING_DIR: '.'
-    #     AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-    ##- name: Terraform Validate
-     ##uses: hashicorp/terraform-github-actions/validate@v0.3.7
+    
     - name: Terraform Plan
+      if: ${{ github.event.inputs.action == 'create_infra' }}
       run: terraform plan
       env:
        GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
@@ -47,9 +48,22 @@ jobs:
       
 
     - name: Terraform Apply
+      if: ${{ github.event.inputs.action == 'create_infra' }}
       run : terraform apply --auto-approve
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
         TF_ACTION_WORKING_DIR: '.'
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        
+    # distroy terraform_infra
+    
+    - name: Terraform destroy 
+      if: ${{ github.event.inputs.action == 'destroy_infra' }}
+      run: terraform destroy --auto-approve
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
+        TF_ACTION_WORKING_DIR: '.'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
