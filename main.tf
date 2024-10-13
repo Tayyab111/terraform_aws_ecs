@@ -32,7 +32,7 @@ locals {
 
     container = {
       "name" = "python_contianer",
-      "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/new_ecr:latest",
+      "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/my_ecr:latest",
       "essentials" = "true",
     
       # log_configuration = {
