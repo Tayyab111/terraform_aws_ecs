@@ -112,7 +112,7 @@ ecs_cluster = {
 
     container = {
       "name" = "python_contianer",
-      "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/my_ecr:latest",
+      "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/new_ecr:latest",
       #"cpu" = 512,
       #"memory" = 512,
       "essentials" = "true",
@@ -172,7 +172,7 @@ aws_secrete = {
   exclude_lowercase = false
   exclude_characters = "!@#$%^&*()?> <.=:;|-_+}]/,"
 
-  secrete_manager_name = "my_secrete_for_rdsaaaaa"
+  secrete_manager_name = "my_secrete_for_rdsaaaaaa"
 
   u_name_for_secrete = "tayyab"
 }
