@@ -1,4 +1,4 @@
-name: Deploy Infrastructure
+name: Deploy aws Infrastructure for ecs
 
 on:
   workflow_dispatch:
