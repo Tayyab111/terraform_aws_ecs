@@ -5,14 +5,18 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   #tags = merge(var.tags , {Name = "db_su bubnet"})
 }
 
+# jsondecode: This function takes a JSON-encoded string and converts it into a map, which allows you to access individual fields by their keys.
+locals {
+  rds_password = jsondecode(var.rds_password)["password"]
+}
 resource "aws_rds_cluster" "db_cluster" {
   cluster_identifier      = var.rds_cluster.cluster_identifier
   engine                  = var.rds_cluster.engine 
   engine_version          = var.rds_cluster.engine_version
-  availability_zones      = var.rds_cluster.availability_zones
+  #availability_zones      = var.rds_cluster.availability_zones
   database_name           = var.rds_cluster.database_name
   master_username         = var.rds_cluster.master_username
-  master_password         =  var.rds_password # getting this password form aws_secret_manager
+  master_password         = local.rds_password # getting this password form aws_secret_manager
   backup_retention_period = var.rds_cluster.backup_retention_period
   preferred_backup_window = var.rds_cluster.preferred_backup_window
   db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.id
@@ -26,7 +30,7 @@ resource "aws_rds_cluster" "db_cluster" {
 resource "aws_rds_cluster_instance" "db_cluster_instances" {
   count = length(var.rds_cluster.cluster_instance.identifier)
   identifier =       var.rds_cluster.cluster_instance.identifier[count.index]
-  cluster_identifier   = aws_rds_cluster.db_cluster.id 
+  cluster_identifier   = var.rds_cluster.cluster_identifier #aws_rds_cluster.db_cluster.id 
   instance_class       = var.rds_cluster.cluster_instance.instance_class
   engine               = aws_rds_cluster.db_cluster.engine
   engine_version       = aws_rds_cluster.db_cluster.engine_version
@@ -34,4 +38,13 @@ resource "aws_rds_cluster_instance" "db_cluster_instances" {
   tags = merge(var.tags, {Name = "db_instance"})
   #apply_immediately    = var.db_instance.apply_immediately
   #tags = merge(var.tags, {Name = "wordpress_rds_tag"})
+  #   lifecycle {
+  #   ignore_changes = [
+  #     engine_version,
+  #     preferred_backup_window,
+  #     preferred_maintenance_window,
+  #     availability_zone,
+  #     network_type,
+  #   ]
+  # }
 }

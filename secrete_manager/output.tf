@@ -1,3 +1,3 @@
 output "rds_password" {
-  value = data.aws_secretsmanager_random_password.random_password_generate.id
+  value = data.aws_secretsmanager_secret_version.rds_secrets_version.secret_string
 }

@@ -11,7 +11,7 @@ locals {
         },
         {
           name  = "DB_PASSWORD"
-          value = module.secret_mngr.rds_password
+          value = module.rds.rds_password
         },
         {
           name = "DB_NAME"
@@ -80,6 +80,7 @@ output "rds_endpoint" {
 }
 output "rds_pass" {
   value = module.secret_mngr.rds_password
+  sensitive = true
 }
 module "security_group" {
   source = "./security_group" 

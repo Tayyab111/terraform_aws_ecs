@@ -84,7 +84,7 @@ rds_cluster = {
   cluster_identifier = "mysql-cluster"
   engine = "aurora-mysql"
   engine_version = "5.7.mysql_aurora.2.11.3"
-  availability_zones = ["us-east-1a", "us-east-1b"] #, "us-east-1c"]
+  #availability_zones = ["us-east-1a", "us-east-1b"] #, "us-east-1c"]
   database_name = "mydb"
   master_username = "tayab"
   
