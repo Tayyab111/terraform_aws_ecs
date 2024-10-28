@@ -1,4 +1,6 @@
+
 locals {
+  pass = jsondecode(module.secret_mngr.rds_password) ["password"]
 
   new_env_vars = [
         {
@@ -11,7 +13,7 @@ locals {
         },
         {
           name  = "DB_PASSWORD"
-          value = module.rds.rds_password
+          value = local.pass
         },
         {
           name = "DB_NAME"
