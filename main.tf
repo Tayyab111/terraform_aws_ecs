@@ -80,10 +80,10 @@ module "vpc" {
 output "rds_endpoint" {
   value = module.rds.ecs_rds_endpoint
 }
-output "rds_pass" {
-  value = module.secret_mngr.rds_password
-  sensitive = true
-}
+# output "rds_pass" {
+#   value = module.secret_mngr.rds_password
+#   sensitive = true
+# }
 module "security_group" {
   source = "./security_group" 
   for_each = var.sg
