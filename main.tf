@@ -1,4 +1,7 @@
 
+
+
+
 locals {
   pass = jsondecode(module.secret_mngr.rds_password) ["password"]
 
