@@ -20,7 +20,7 @@
 #   })
 # }
 data "aws_secretsmanager_secret" "secrets" {
-  arn = "arn:aws:secretsmanager:us-east-1:654654575882:secret:my_rds_secretss-iQiojQ"
+  arn = "arn:aws:secretsmanager:us-east-1:654654575882:secret:tayyab-xFCEvc"
 }
 
 
