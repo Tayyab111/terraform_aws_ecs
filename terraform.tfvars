@@ -143,10 +143,10 @@ ecs_cluster = {
           name  = "DB_USER"
           value = ""
         },
-        {
-          name  = "DB_PASSWORD"
-          value = ""
-        },
+        #{
+         # name  = "DB_PASSWORD"
+         # value = ""
+        #},
         {
           name = "DB_NAME"
           value = ""
