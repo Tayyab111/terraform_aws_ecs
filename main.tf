@@ -16,10 +16,10 @@ locals {
           name  = "DB_USER"
           value = "tayab"
         },
-        {
-          name  = "DB_PASSWORD"
-          value = local.pass
-        },
+        #{
+         # name  = "DB_PASSWORD"
+         #value = local.pass
+        #},
         {
           name = "DB_NAME"
           value = "mydb"
