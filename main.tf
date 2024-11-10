@@ -43,7 +43,7 @@ locals {
       "essentials" = "true",
       "secrets": [{
       "name": "DB_PASSWORD",
-      "valueFrom": "arn:aws:secretsmanager:us-east-1:654654575882:secret:tayyab-xFCEvc"
+      "valueFrom": "arn:aws:secretsmanager:us-east-1:654654575882:secret:tayyab-xFCEvc:password::"
     }]
       # log_configuration = {
       #   log_driver = "awslogs"
