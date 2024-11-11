@@ -1,12 +1,7 @@
-# s3 bucket
-# ecs
-#
-
-
 
 locals {
   pass = jsondecode(module.secret_mngr.rds_password) ["password"]
-
+  #pass = jsondecode(data.aws_secretsmanager_secret_version.rds_secrets_version.secret_string) ["password"]
   new_env_vars = [
         {
           name  = "DB_HOST"
@@ -17,9 +12,9 @@ locals {
           value = "tayab"
         },
         {
-          name  = "DB_PASSWORD"
+         name  = "DB_PASSWORD"
           value = local.pass
-        },
+       },
         {
           name = "DB_NAME"
           value = "mydb"
@@ -41,6 +36,11 @@ locals {
       "name" = "python_contianer",
       "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/new_ecr:latest",
       "essentials" = "true",
+    #    "secrets": [{
+    #   "name": "DB_PASSWORD",
+    #   "valueFrom": "arn:aws:secretsmanager:us-east-1:654654575882:secret:tayyab-xFCEvc:password::"
+    # }]
+  
     
       # log_configuration = {
       #   log_driver = "awslogs"
@@ -85,10 +85,11 @@ module "vpc" {
 output "rds_endpoint" {
   value = module.rds.ecs_rds_endpoint
 }
-# output "rds_pass" {
-#   value = module.secret_mngr.rds_password
-#   sensitive = true
-# }
+ output "rds_pass" {
+   value =jsondecode(module.secret_mngr.rds_password) ["password"]
+   #value = module.secret_mngr.rds_password
+   sensitive = true
+ }
 module "security_group" {
   source = "./security_group" 
   for_each = var.sg
