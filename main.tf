@@ -36,12 +36,12 @@ locals {
       "name" = "python_contianer",
       "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/new_ecr:latest",
       "essentials" = "true",
+
     #    "secrets": [{
     #   "name": "DB_PASSWORD",
     #   "valueFrom": "arn:aws:secretsmanager:us-east-1:654654575882:secret:tayyab-xFCEvc:password::"
     # }]
   
-    
       # log_configuration = {
       #   log_driver = "awslogs"
       #   options = {
