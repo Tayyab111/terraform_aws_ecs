@@ -1,7 +1,7 @@
 
 locals {
-  pass = jsondecode(module.secret_mngr.rds_password) ["password"]
-  #pass = jsondecode(data.aws_secretsmanager_secret_version.rds_secrets_version.secret_string) ["password"]
+  #pass = jsondecode(module.secret_mngr.rds_password) ["password"]
+  pass = jsondecode(data.aws_secretsmanager_secret_version.rds_secrets_version.secret_string) ["password"]
   new_env_vars = [
         {
           name  = "DB_HOST"
