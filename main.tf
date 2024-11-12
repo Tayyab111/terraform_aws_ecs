@@ -1,6 +1,6 @@
 
 locals {
-  pass = jsondecode(module.secret_mngr.rds_password) ["password"]
+  #pass = jsondecode(module.secret_mngr.rds_password) ["password"]
   #pass = jsondecode(data.aws_secretsmanager_secret_version.rds_secrets_version.secret_string) ["password"]
   new_env_vars = [
         {
@@ -13,7 +13,8 @@ locals {
         },
         {
          name  = "DB_PASSWORD"
-          value = local.pass
+         #value = local.pass
+         value = module.secret_mngr.rds_password
        },
         {
           name = "DB_NAME"
@@ -34,7 +35,7 @@ locals {
 
     container = {
       "name" = "python_contianer",
-      "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/new_ecr:latest",
+      "image" = "654654575882.dkr.ecr.us-east-1.amazonaws.com/new-ecr:latest",
       "essentials" = "true",
 
     #    "secrets": [{
