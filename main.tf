@@ -14,7 +14,7 @@ locals {
         {
          name  = "DB_PASSWORD"
          #value = local.pass
-         value = module.secret_manger.rds_password
+         value = module.secret_manager.rds_password
        },
         {
           name = "DB_NAME"
