@@ -15,6 +15,7 @@ locals {
          name  = "DB_PASSWORD"
          #value = local.pass
          value = module.secret_mngr.rds_password
+
        },
         {
           name = "DB_NAME"
